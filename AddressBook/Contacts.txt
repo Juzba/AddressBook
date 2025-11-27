@@ -1,4 +1,5 @@
 1,John Doe,123-456-7890,john.doe@example.com
+2,Juzby,74521315465,Juzby@gmail.com
+2,Katka,6421316465413,Katka@gmail.com
 3,Alice Johnson,555-123-4567,alice.johnson@example.com
 4,Jiri Strnadel,511515544 45454,Juzba@gmail.com
-2,Karel Novak,+420 875 241 321,Karel@seznam.cz

@@ -15,17 +15,20 @@ int main()
 	//test_data(contacts);
 
 	bool start = true;
-	
+
 
 	while (start)
 	{
 		char c = ' ';
 		system("cls");
-		system("color 0A");
+
+		if (status == "OK") system("color 0A");
+		else system("color 0C");
 
 
 		std::cout << "Address Book\n";
 		std::cout << "Status: " << status << "\n\n";
+
 
 		std::cout << "1) - Add Contact\n";
 		std::cout << "2) - View Contacts\n";
@@ -52,7 +55,7 @@ int main()
 		case('3'): // Delete Contact
 			delete_contact(contacts);
 			save_contacts(contacts);
-			return_main(); 
+			return_main();
 			break;
 
 		case('4'): // Search Contact

@@ -38,4 +38,9 @@
       <Filter>Hlavičkové soubory</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Contacts.txt">
+      <Filter>Zdrojové soubory</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

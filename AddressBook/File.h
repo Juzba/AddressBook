@@ -1,6 +1,7 @@
 #pragma once
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 
 std::string open_contacts(std::vector<Contact>& contacts) {
 
@@ -36,7 +37,18 @@ std::string open_contacts(std::vector<Contact>& contacts) {
 }
 
 
-void save_contacts(const std::vector<Contact>& contacts) {
+void order_contacts(std::vector<Contact>& contacts){
+
+	std::sort(contacts.begin(), contacts.end(), [](const Contact& a, const Contact& b)
+		{
+			return a.id < b.id;
+		});
+}
+
+
+void save_contacts(std::vector<Contact>& contacts) {
+
+	order_contacts(contacts);
 
 	std::ofstream ofs("Contacts.txt");
 
@@ -48,4 +60,3 @@ void save_contacts(const std::vector<Contact>& contacts) {
 }
 
 
-////
