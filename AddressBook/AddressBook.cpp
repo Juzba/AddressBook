@@ -2,26 +2,20 @@
 #include "Contact.h"
 #include "Func.h"
 #include <vector>
+#include "File.h"
 
 
 int main()
 {
 	std::vector<Contact> contacts;
+	std::string status;
 
-	Contact personOne(1, "John Doe", "123-456-7890", "john.doe@example.com");
-	Contact personTwo(2, "Jane Smith", "987-654-3210", "jane.smith@example.com");
-	Contact personThree(3, "Alice Johnson", "555-123-4567", "alice.johnson@example.com");
+	status = open_contacts(contacts);
 
-
-
-
-
-	contacts.push_back(personOne);
-	contacts.push_back(personTwo);
-	contacts.push_back(personThree);
+	//test_data(contacts);
 
 	bool start = true;
-
+	
 
 	while (start)
 	{
@@ -30,7 +24,9 @@ int main()
 		system("color 0A");
 
 
-		std::cout << "Address Book\n\n";
+		std::cout << "Address Book\n";
+		std::cout << "Status: " << status << "\n\n";
+
 		std::cout << "1) - Add Contact\n";
 		std::cout << "2) - View Contacts\n";
 		std::cout << "3) - Delete Contact\n";
@@ -42,17 +38,36 @@ int main()
 
 		switch (c)
 		{
-		case('1'): add_contact(contacts); return_main(); break;
-		case('2'): view_contacts(contacts, "color 0A"); return_main(); break;
-		case('3'): delete_contact(contacts); return_main(); break;
-		case('4'): break;
-		case('5'): start = false; break;
+		case('1'): // Add Contact
+			add_contact(contacts);
+			save_contacts(contacts);
+			return_main();
+			break;
+
+		case('2'): // View Contacts
+			view_contacts(contacts, "color 0A");
+			return_main();
+			break;
+
+		case('3'): // Delete Contact
+			delete_contact(contacts);
+			save_contacts(contacts);
+			return_main(); 
+			break;
+
+		case('4'): // Search Contact
+			break;
+
+		case('5'): // Exit
+			start = false; break;
 
 		default: std::cout << "Invalid option!"; break;
 		}
 	}
 
 	std::cout << "\nProgram End\n";
+	return 0;
 }
 
 
+//////

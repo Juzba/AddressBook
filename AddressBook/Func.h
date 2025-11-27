@@ -6,13 +6,16 @@
 
 
 void add_contact(std::vector<Contact>& contacts) {
-	int id = 0;
+	int id = 1;
 	std::string name, phone, email;
 
 	system("cls");
 	system("color 0C");
 
-	id = contacts.size() + 1;
+	for (const auto& contact : contacts) {
+		if (contact.id != id) break;
+		id++;
+	}
 
 	std::cout << "Add Contact\n";
 
@@ -52,6 +55,7 @@ void delete_contact(std::vector<Contact>& contacts) {
 	view_contacts(contacts, "color 0C");
 
 	std::cout << "\n\nInsert index number to delete contact.:\n";
+	std::cout << "Insert 0 to cancel\n";
 
 	// get index to delete
 	while (true)
@@ -64,21 +68,37 @@ void delete_contact(std::vector<Contact>& contacts) {
 			continue;
 		}
 
+		if (index == 0) return;
 		if (index > 0 && index <= contacts.size()) break;
 
 		std::cout << "Index out of range. Please enter a valid index number:\n";
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 
-
-	// potrebuji odstranit polozku s urcitym id
-	//contacts.erase(contacts.begin() + index - 1);
-
+	for (size_t i = 0; i < contacts.size(); i++)
+	{
+		if (contacts[i].id == index) {
+			contacts.erase(contacts.begin() + i);
+			break;
+		}
+	}
 
 }
 
 
 void return_main() {
+	// Wait for user to press enter
 	std::string str;
 	std::getline(std::cin, str);
+}
+
+
+void test_data(std::vector<Contact>& contacts) {
+	Contact personOne(1, "John Doe", "123-456-7890", "john.doe@example.com");
+	Contact personTwo(2, "Jane Smith", "987-654-3210", "jane.smith@example.com");
+	Contact personThree(3, "Alice Johnson", "555-123-4567", "alice.johnson@example.com");
+
+	contacts.push_back(personOne);
+	contacts.push_back(personTwo);
+	contacts.push_back(personThree);
 }
